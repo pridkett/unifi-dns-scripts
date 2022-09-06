@@ -51,8 +51,11 @@ Configuration
 
 ### 10-redirect-all-dns.sh
 
+- `DISABLE_IP6_DNS`:
+If this is set to anything but an empty string, then rather than redirecting IP6 DNS, this will block all DNS requests over outbound IPv6. This can be useful if you don't want to deal with the headache of seeing hundreds of different IPv6 hosts on your PiHole and AdGuard Home logs.
+
 - `BACKUP_IP4_DNS`, `BACKUP_IP6_DNS`:
-One of the first things that you'll want is the IP addresses of your secondary DNS for both IPv4 and IPv6. The settings currently in the file are for NextDNS. These should be the same IP addresses that you've configured in the GUI for your UDM Pro for your LAN network.
+One of the first things that you'll want is the IP addresses of your secondary DNS for both IPv4 and IPv6. The settings currently in the file are for NextDNS and for Quad9. These should be the same IP addresses that you've configured in the GUI for your UDM Pro for your LAN network.
 
 ![IPv4 DNS Configuration](docs/IPv4-dns-configuration.png "IPv4 DNS Configuration")
 **IPv4 DNS Configuration - 192.168.1.2 is my Pi-Hole, the other two are NextDNS Backup**
@@ -66,10 +69,13 @@ These are the static IP addresses of your PiHole for both IPv4 and IPv6. Any out
 - `IP4_NO_REDIRECT`, `IP6_NO_REDIRECT`
 Hosts listed in these settings will be able to send DNS requests to any host anywhere in the world. Consider this as a bit of a DNS back door.
 
+- `IFACE`
+The ethernet interface for your outbound DNS blocking and redirection. At this time if you are running multiple interfaces, this won't insert the redirection rule.
+
 License
 -------
 
-Copyright (c) 2021 Patrick Wagstrom
+Copyright (c) 2022 Patrick Wagstrom
 
 Licensed under terms of the MIT License
 
